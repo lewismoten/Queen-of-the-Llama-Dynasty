@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/lewismoten/Queen-of-the-Llama-Dynasty/issues"
   },
-  "homepage": "https://github.com/lewismoten/Queen-of-the-Llama-Dynasty#readme",
+  "homepage": "https://github.com/lewismoten/Queen-of-the-Llama-Dynasty",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
