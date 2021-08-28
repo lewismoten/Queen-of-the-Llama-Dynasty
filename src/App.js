@@ -2,12 +2,14 @@ import { Provider } from 'react-redux';
 
 import logo from './logo.svg';
 import './App.css';
+import TileGrid from './TileGrid';
 
 const App = ({store} ) => (
     <Provider store={store}>
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <TileGrid />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
