@@ -1,4 +1,7 @@
 import {useEffect, useRef, useState, useCallback} from 'react';
+import { useDispatch } from 'react-redux';
+// import * as inputSelectors from './state/input/selectors';
+import * as inputActions from './state/input/actions';
 
 const KEY_CODE = {
   LEFT: 37,
@@ -22,6 +25,12 @@ const move = ({x,y}, speed, input) => {
 
 const TileGrid = () => {
 
+  const dispatch = useDispatch();
+
+  // const up = useSelector(inputSelectors.up);
+  // const down = useSelector(inputSelectors.down);
+  // const left = useSelector(inputSelectors.left);
+  // const right = useSelector(inputSelectors.right);
 
   const canvasRef = useRef(null);
   const frameRequest = useRef();
@@ -36,8 +45,8 @@ const TileGrid = () => {
     const delta = (time - lastFrameTime.current) / 50;
 
     const point = move({x,y}, delta, input);
-    if(x !== point.x || y !== point.y)
-      console.log(point);
+    // if(x !== point.x || y !== point.y)
+      // console.log(point);
     if(x !== point.x) setX(point.x);
     if(y !== point.y) setY(point.y);
 
@@ -65,7 +74,13 @@ const TileGrid = () => {
 
   const onKeyDownCallback = useCallback(onKeyDown, [input]);
   const onKeyUpCallback = useCallback(onKeyUp, [input]);
-  const onFrameCallback = useCallback(onFrame, [x, y, input])
+  const onFrameCallback = useCallback(onFrame, [x, y, input, onFrame])
+
+  useEffect(() => {
+    const id = 'tile grid';
+    dispatch(inputActions.initialize({id}));
+    return () => dispatch(inputActions.destroy({id}));
+  }, [dispatch])
 
   useEffect(() => {
     frameRequest.current = requestAnimationFrame(onFrameCallback);
